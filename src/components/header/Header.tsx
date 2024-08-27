@@ -5,9 +5,9 @@ export default function Header() {
     return (
         <>
             <div className={styles.container}>
-                <Link to={'/'}>home</Link>
-                <Link to={'/post'}>post</Link>
-                <Link to={'/about'}>about</Link>
+                <Link to={'/'}>Home</Link>
+                <Link to={'/post'}>Post</Link>
+                <Link to={'/about'}>About</Link>
             </div>
         </>
     );

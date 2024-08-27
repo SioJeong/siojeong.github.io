@@ -2,14 +2,16 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard Variable',
         Pretendard, Roboto, 'Noto Sans KR', 'Segoe UI', 'Malgun Gothic', 'Apple Color Emoji',
         'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
+    font-weight: lighter;
     background-color: #566270;
     color: #f7f7ec;
+    display: flex;
+    justify-content: center;
 }
 
 a {
     text-decoration: none;
-    color: #e0e3da;
+    color: #f7f7ec;
 }
 
 a:hover {
@@ -18,7 +20,7 @@ a:hover {
 
 .root-container {
     margin: 3em 2em;
-    max-width: 100%;
+    min-width: 600px;
 }
 
 @media (min-width: 600px) {
