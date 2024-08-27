@@ -1,0 +1,15 @@
+.heading2 {
+    margin-top: 4rem;
+}
+
+.list {
+    list-style: square;
+}
+
+.codeBlock {
+    margin-bottom: 4rem;
+}
+
+.codeBlockTitle {
+    color: #ff6a5f;
+}

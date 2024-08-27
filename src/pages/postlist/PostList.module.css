@@ -1,0 +1,19 @@
+.postList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.postItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.postTitle {
+    color: #ffffff;
+}
+
+.postDate {
+    font-weight: lighter;
+}

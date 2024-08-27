@@ -1,0 +1,28 @@
+.symbol {
+    width: 100px;
+    height: 100px;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.recentPostsTitle {
+    margin-top: 5rem;
+}
+
+.recentPostsList {
+    list-style-type: square;
+    margin-left: 1rem;
+    padding: 0;
+}
+
+.recentPostItem {
+    margin-bottom: 1rem;
+}

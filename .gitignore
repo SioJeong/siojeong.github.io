@@ -1,0 +1,20 @@
+# 로그 파일과 임시 파일
+*.log
+*.tmp
+*.pid
+*.pid.lock
+
+# 운영 체제별 파일들
+.DS_Store
+Thumbs.db
+
+# 노드 모듈 및 기타 패키지 매니저
+node_modules/
+bower_components/
+vendor/
+
+# 에디터 및 IDE 파일들
+*.sublime-project
+*.sublime-workspace
+.idea/
+.vscode/
