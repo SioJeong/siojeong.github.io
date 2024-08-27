@@ -19,13 +19,13 @@ a:hover {
 }
 
 .root-container {
-    margin: 3em 2em;
-    min-width: 600px;
+    margin: 3em 10em;
+    max-width: 600px;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 600px) {
     .root-container {
-        margin: 3em 10em;
-        max-width: 600px;
+        margin: 3em 2em;
+        max-width: 100%;
     }
 }
