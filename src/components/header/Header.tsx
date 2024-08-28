@@ -1,13 +1,28 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 
 export default function Header() {
     return (
         <>
             <div className={styles.container}>
-                <Link to={'/'}>Home</Link>
-                <Link to={'/post'}>Post</Link>
-                <Link to={'/about'}>About</Link>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
+                >
+                    Home
+                </NavLink>
+                <NavLink
+                    to="/post"
+                    className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
+                >
+                    Post
+                </NavLink>
+                <NavLink
+                    to="/about"
+                    className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
+                >
+                    About
+                </NavLink>
             </div>
         </>
     );
