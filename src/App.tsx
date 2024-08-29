@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <PostProvider>
             {/* <BrowserRouter>  */}
-            <BrowserRouter basename='https://siojeong.github.io/'>
+            <BrowserRouter basename='/'>
                 <div className="root-container">
                     <div className="content">
                         <Header />
