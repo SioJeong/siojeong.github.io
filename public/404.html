@@ -25,9 +25,8 @@
       let segmentCount = 1;
 
       let l = window.location;
-      let queryString = l.search || l.hash;
 
-      if (!queryString.includes('?p=/')) {
+      if (!l.search.includes('?p=')) {
         l.replace(
           l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
           l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +

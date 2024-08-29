@@ -25,11 +25,12 @@
                 let a = v.split('=');
                 q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
               });
-              if (q.p !== undefined) {
-                let path = l.pathname.slice(0, -1) + (q.p || '');
-                if (l.pathname !== path) {
-                  window.history.replaceState(null, null, path + (q.q ? ('?' + q.q) : '') + l.hash);
-                }
+              if (q.p !== undefined && l.pathname !== q.p) {
+                window.history.replaceState(null, null,
+                  l.pathname.slice(0, -1) + (q.p || '') +
+                  (q.q ? ('?' + q.q) : '') +
+                  l.hash
+                );
               }
             }
           }(window.location));
