@@ -1,8 +1,8 @@
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import styles from './MarkdownRenderer.module.css';
 
 interface MarkdownRendererProps {
@@ -17,6 +17,7 @@ export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
                 rehypePlugins={[rehypeRaw]}
                 components={{
                     h2: ({ node, ...props }) => <h2 className={styles.heading2} {...props} />,
+                    strong: ({ node, ...props }) => <strong className={styles.strong} {...props} />,
                     li: ({ node, ...props }) => <li className={styles.list} {...props} />,
                     details: ({ node, ...props }) => (
                         <details className={styles.codeBlock} {...props} />
