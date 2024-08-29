@@ -4,6 +4,10 @@
 *.pid
 *.pid.lock
 
+# 빌드 파일
+dist
+build
+
 # 운영 체제별 파일들
 .DS_Store
 Thumbs.db

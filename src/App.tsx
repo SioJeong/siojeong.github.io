@@ -16,7 +16,8 @@ import './shared/fonts/Font.css';
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <PostProvider>
-            <BrowserRouter>
+            {/* <BrowserRouter>  */}
+            <BrowserRouter basename='https://siojeong.github.io/'>
                 <div className="root-container">
                     <div className="content">
                         <Header />
