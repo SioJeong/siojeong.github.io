@@ -17,3 +17,7 @@
 .codeBlockTitle {
     color: #ff6a5f;
 }
+
+.codeBlockTitle:hover {
+    cursor: pointer;
+}
