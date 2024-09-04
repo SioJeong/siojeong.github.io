@@ -16,23 +16,21 @@ export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}
                 components={{
-                    h2: ({ node, ...props }) => <h2 className={styles.heading2} {...props} />,
-                    strong: ({ node, ...props }) => <strong className={styles.strong} {...props} />,
-                    li: ({ node, ...props }) => <li className={styles.list} {...props} />,
-                    details: ({ node, ...props }) => (
-                        <details className={styles.codeBlock} {...props} />
-                    ),
-                    summary: ({ node, ...props }) => (
-                        <summary className={styles.codeBlockTitle} {...props} />
-                    ),
-                    code({ node, className, children, style, ...props }) {
+                    h2: (props) => <h2 className={styles.heading2} {...props} />,
+                    h3: (props) => <h3 className={styles.heading3} {...props} />,
+                    strong: (props) => <strong className={styles.strong} {...props} />,
+                    ul: (props) => <ul className={styles.unorderedList} {...props} />,
+                    ol: (props) => <ol className={styles.orderedList} {...props} />,
+                    li: (props) => <li className={styles.list} {...props} />,
+                    details: (props) => <details className={styles.codeBlock} {...props} />,
+                    summary: (props) => <summary className={styles.codeBlockTitle} {...props} />,
+                    code({ className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
                             <SyntaxHighlighter
                                 style={vscDarkPlus}
                                 language={match[1]}
                                 PreTag="div"
-                                {...(props as any)}
                             >
                                 {String(children).replace(/\n$/, '')}
                             </SyntaxHighlighter>

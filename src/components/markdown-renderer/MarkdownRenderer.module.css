@@ -2,12 +2,26 @@
     margin-top: 4rem;
 }
 
+.heading3 {
+    margin-top: 3rem;
+}
+
 .strong {
     font-weight: normal;
 }
 
+.unorderedList {
+    list-style-type: square;
+    padding: 0;
+}
+
+.orderedList {
+    padding: 0;
+}
+
 .list {
-    list-style: square;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
 }
 
 .codeBlock {
