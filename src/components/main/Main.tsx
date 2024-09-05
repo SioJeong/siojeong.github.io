@@ -1,19 +1,24 @@
-import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import Home from '../../pages/home/Home';
-import PostList from '../../pages/postlist/PostList';
-import About from '../../pages/about/About';
-import PostDetail from '../../pages/postdetail/PostDetail';
+// 레이지 로딩을 사용하여 컴포넌트 임포트
+const Home = lazy(() => import('../../pages/home/Home'));
+const PostList = lazy(() => import('../../pages/postlist/PostList'));
+const About = lazy(() => import('../../pages/about/About'));
+const PostDetail = lazy(() => import('../../pages/postdetail/PostDetail'));
 
+// 로딩 중 표시할 컴포넌트
 export default function Main() {
     return (
         <div>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/post" element={<PostList />} />
-                <Route path="/post/:postId" element={<PostDetail />} />
-                <Route path="/about" element={<About />} />
-            </Routes>
+            <Suspense fallback={null}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/post" element={<PostList />} />
+                    <Route path="/post/:postId" element={<PostDetail />} />
+                    <Route path="/about" element={<About />} />
+                </Routes>
+            </Suspense>
         </div>
     );
 }

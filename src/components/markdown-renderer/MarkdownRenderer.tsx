@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
@@ -8,6 +9,8 @@ import styles from './MarkdownRenderer.module.css';
 interface MarkdownRendererProps {
     markdown: string;
 }
+
+SyntaxHighlighter.registerLanguage('jsx', jsx);
 
 export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
     return (
@@ -19,6 +22,7 @@ export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
                     h2: (props) => <h2 className={styles.heading2} {...props} />,
                     h3: (props) => <h3 className={styles.heading3} {...props} />,
                     strong: (props) => <strong className={styles.strong} {...props} />,
+                    img: (props) => <img className={styles.image} {...props} />,
                     ul: (props) => <ul className={styles.unorderedList} {...props} />,
                     ol: (props) => <ol className={styles.orderedList} {...props} />,
                     li: (props) => <li className={styles.list} {...props} />,
