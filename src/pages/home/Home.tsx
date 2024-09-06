@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MarkdownRenderer from '../../components/markdown-renderer/MarkdownRenderer';
-import fetchRecentPostsTitles from '../../utils/FetchRecentPostsInfos.ts';
 import usePostContext from '../../context/PostContext';
+import fetchRecentPostsTitles from '../../utils/FetchRecentPostsInfos.ts';
 import styles from './Home.module.css';
 
 const RECENT_POSTS_STANDARD = 5;
@@ -17,29 +17,32 @@ export default function Home() {
     const [recentPostsTitles, setRecentPostsTitles] = useState<PostTitle[]>([]);
 
     useEffect(() => {
-        fetch(`/markdowns/home/intro.md`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch markdown file');
-                }
-                return response.text();
-            })
-            .then((text) => setMarkdown(text));
+        const fetchData = async () => {
+            try {
+                // 네트워크 요청 병렬 처리
+                const markdownResponse = fetch(`/markdowns/home/intro.md`);
+                const markdownPaths = Array.from({ length: RECENT_POSTS_STANDARD }, (_, i) => 
+                    `/markdowns/posts/${totalPostsNumber - i}.md`
+                );
 
-        const markdownPaths: string[] = [];
+                const titlesPromise = fetchRecentPostsTitles(markdownPaths);
+                const [markdownResult, titles] = await Promise.all([markdownResponse, titlesPromise]);
 
-        for (let i = 0; i < RECENT_POSTS_STANDARD; i++) {
-            markdownPaths.push(`/markdowns/posts/${totalPostsNumber - i}.md`);
-        }
+                if (!markdownResult.ok) throw new Error('Failed to fetch markdown file');
+                const text = await markdownResult.text();
+                setMarkdown(text);
+                setRecentPostsTitles(titles.slice(0, RECENT_POSTS_STANDARD));
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-        fetchRecentPostsTitles(markdownPaths).then((titles) =>
-            setRecentPostsTitles(titles.slice(0, RECENT_POSTS_STANDARD))
-        );
+        fetchData();
     }, [totalPostsNumber]);
 
     return (
         <div>
-            <img src="/Symbol.svg" className={styles.symbol} />
+            <img src="/Symbol.svg" alt="Symbol" className={styles.symbol} />
             <MarkdownRenderer markdown={markdown} />
             <h1 className={styles.recentPostsTitle}>Recently Posted</h1>
             <ul className={styles.recentPostsList}>
