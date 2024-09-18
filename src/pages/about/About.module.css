@@ -1,0 +1,19 @@
+.symbol {
+    width: 100px;
+    height: 100px;
+    animation: rotate 10s linear infinite;
+    margin: 2rem;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+strong {
+    font-weight: 400;
+}
