@@ -1,20 +1,14 @@
-.symbol {
-    width: 100px;
-    height: 100px;
-    animation: rotate 10s linear infinite;
+.audioContainer {
+    text-align: center;
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.audio {
+    width: 100%;
+    margin: 2rem 0;
 }
 
 .recentPostsTitle {
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .recentPostsList {
