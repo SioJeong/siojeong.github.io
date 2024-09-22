@@ -10,7 +10,7 @@ const PostDetail = lazy(() => import('../../pages/postdetail/PostDetail'));
 // 로딩 중 표시할 컴포넌트
 export default function Main() {
     return (
-        <div>
+        <main>
             <Suspense fallback={null}>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -19,6 +19,6 @@ export default function Main() {
                     <Route path="/about" element={<About />} />
                 </Routes>
             </Suspense>
-        </div>
+        </main>
     );
 }

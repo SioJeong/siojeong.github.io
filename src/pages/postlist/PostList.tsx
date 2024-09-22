@@ -35,17 +35,22 @@ export default function PostList() {
     }, [totalPostsNumber]);
 
     return (
-        <div>
+        <main>
             <ul className={styles.postList}>
                 {posts.map(({ title, date }, index) => (
-                    <li key={`${title}-${date}`} className={styles.postItem}>
-                        <Link to={`/post/${totalPostsNumber - index}`} className={styles.postTitle}>
-                            {title}
-                        </Link>
-                        <PostDate date={date} className={styles.postDate} />
+                    <li key={`${title}-${date}`}>
+                        <article className={styles.postItem}>
+                            <Link
+                                to={`/post/${totalPostsNumber - index}`}
+                                className={styles.postTitle}
+                            >
+                                {title}
+                            </Link>
+                            <PostDate date={date} className={styles.postDate} />
+                        </article>
                     </li>
                 ))}
             </ul>
-        </div>
+        </main>
     );
 }

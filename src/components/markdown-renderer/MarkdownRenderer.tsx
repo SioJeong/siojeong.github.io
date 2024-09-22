@@ -5,16 +5,17 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import styles from './MarkdownRenderer.module.css';
+import { memo } from 'react';
+
+SyntaxHighlighter.registerLanguage('jsx', jsx);
 
 interface MarkdownRendererProps {
     markdown: string;
 }
 
-SyntaxHighlighter.registerLanguage('jsx', jsx);
-
-export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
+const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
     return (
-        <div>
+        <article>
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}
@@ -22,7 +23,9 @@ export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
                     h2: (props) => <h2 className={styles.heading2} {...props} />,
                     h3: (props) => <h3 className={styles.heading3} {...props} />,
                     strong: (props) => <strong className={styles.strong} {...props} />,
-                    img: (props) => <img className={styles.image} {...props} />,
+                    img: (props) => (
+                        <img className={styles.image} {...props} alt={props.alt || ''} />
+                    ),
                     ul: (props) => <ul className={styles.unorderedList} {...props} />,
                     ol: (props) => <ol className={styles.orderedList} {...props} />,
                     li: (props) => <li className={styles.list} {...props} />,
@@ -31,11 +34,7 @@ export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
                     code({ className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <SyntaxHighlighter
-                                style={vscDarkPlus}
-                                language={match[1]}
-                                PreTag="div"
-                            >
+                            <SyntaxHighlighter style={vscDarkPlus} language={match[1]} PreTag="div">
                                 {String(children).replace(/\n$/, '')}
                             </SyntaxHighlighter>
                         ) : (
@@ -48,6 +47,8 @@ export default function MarkdownRenderer({ markdown }: MarkdownRendererProps) {
             >
                 {markdown}
             </ReactMarkdown>
-        </div>
+        </article>
     );
-}
+};
+
+export default memo(MarkdownRenderer);

@@ -8,7 +8,7 @@
 .postItem {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin: 2rem 0;
     gap: 2rem;
 }
 

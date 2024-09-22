@@ -33,23 +33,29 @@ export default function Home() {
     }, [totalPostsNumber]);
 
     return (
-        <section>
-            <div className={styles.audioContainer}>
+        <main>
+            <section className={styles.audioContainer}>
                 <a
                     href="https://music.apple.com/kr/playlist/24%EB%85%84-9%EC%9B%94/pl.u-AkAmPNyt27LV71x"
                     target="_blank"
                 >
                     <img src="/audio.jpg" className={styles.audio} alt="audio" />
                 </a>
-            </div>
+            </section>
             <h1 className={styles.recentPostsTitle}>Recently Posted</h1>
-            <ul className={styles.recentPostsList}>
-                {recentPostsTitles.map(({ title }, index) => (
-                    <li key={index} className={styles.recentPostItem}>
-                        <Link to={`/post/${totalPostsNumber - index}`}>{title || 'None'}</Link>
-                    </li>
-                ))}
-            </ul>
-        </section>
+            <section>
+                <nav>
+                    <ul className={styles.recentPostsList}>
+                        {recentPostsTitles.map(({ title }, index) => (
+                            <li key={index} className={styles.recentPostItem}>
+                                <Link to={`/post/${totalPostsNumber - index}`}>
+                                    {title || 'None'}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </section>
+        </main>
     );
 }

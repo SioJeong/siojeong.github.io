@@ -2,7 +2,7 @@ import styles from './About.module.css';
 
 export default function About() {
     return (
-        <section>
+        <article>
             <img src="/Symbol.svg" alt="Symbol" className={styles.symbol} />
             <p>
                 저는 소프트웨어 엔지니어를 목표로 하고 있으며, 코드의 핵심 가치를{' '}
@@ -26,6 +26,6 @@ export default function About() {
                 <strong>공간 디자인</strong>에 깊은 관심을 가지고 있습니다. 가구, 조명, 음향 등
                 공간을 구성하는 요소들을 탐구하며, 미래에 카페나 스튜디오를 만들어보고 싶습니다.
             </p>
-        </section>
+        </article>
     );
 }
