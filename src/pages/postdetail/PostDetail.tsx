@@ -41,13 +41,13 @@ export default function PostDetail() {
     }
 
     return (
-        <section>
+        <main>
             <header>
                 <h1>{frontmatter.title}</h1>
                 <div className={styles.postInfo}>
                     <p>
                         Tags:{' '}
-                        {Array.isArray(frontmatter.tag) 
+                        {Array.isArray(frontmatter.tag)
                             ? frontmatter.tag.join(', ')
                             : frontmatter.tag}
                     </p>
@@ -60,8 +60,8 @@ export default function PostDetail() {
             <br />
             <br />
             <footer>
-                <a href="/post" >← 이전 페이지로</a>
+                <a href="/post">← 이전 페이지로</a>
             </footer>
-        </section>
+        </main>
     );
 }
