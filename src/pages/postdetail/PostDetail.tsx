@@ -60,7 +60,7 @@ export default function PostDetail() {
             <br />
             <br />
             <footer>
-                <a href="/post">← 이전 페이지로</a>
+                <a href="/post">← 게시글 목록으로</a>
             </footer>
         </main>
     );
