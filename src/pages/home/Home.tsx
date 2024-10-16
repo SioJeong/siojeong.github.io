@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import usePostContext from '../../context/PostContext';
 import fetchRecentPostsTitles from '../../utils/FetchRecentPostsInfos.ts';
 import styles from './Home.module.css';
+import { usePostContext } from '../../context/usePostContext.ts';
 
 const RECENT_POSTS_STANDARD = 5;
 
