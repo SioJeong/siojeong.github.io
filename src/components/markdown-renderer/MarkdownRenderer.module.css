@@ -1,9 +1,11 @@
 .heading2 {
     margin-top: 4rem;
+    font-weight: 600;
 }
 
 .heading3 {
     margin-top: 3rem;
+    font-weight: 600;
 }
 
 .strong {
@@ -13,7 +15,7 @@
 .image {
     display: block;
     margin: 0 auto;
-    width: 100%
+    width: 100%;
 }
 
 .unorderedList {
@@ -40,4 +42,10 @@
 
 .codeBlockTitle:hover {
     cursor: pointer;
+}
+
+.inlineCode {
+    background-color: #a4453e;
+    padding: 0.1rem;
+    border-radius: 3px;
 }
