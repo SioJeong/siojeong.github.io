@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PostDate from '../../components/post-date/PostDate';
-import usePostContext from '../../context/PostContext';
+import { usePostContext } from '../../context/usePostContext.ts';
 import fetchRecentPostsTitles from '../../utils/FetchRecentPostsInfos.ts';
 import styles from './PostList.module.css';
 
