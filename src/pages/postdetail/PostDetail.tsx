@@ -1,9 +1,11 @@
 import matter from 'gray-matter';
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import MarkdownRenderer from '../../components/markdown-renderer/MarkdownRenderer';
+// import MarkdownRenderer from '../../components/markdown-renderer/MarkdownRenderer';
 import PostDate from '../../components/post-date/PostDate';
 import styles from './PostDetail.module.css';
+
+const MarkdownRenderer = lazy(() => import('../../components/markdown-renderer/MarkdownRenderer'));
 
 // 인터페이스 정의
 interface FrontMatter {
