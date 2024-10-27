@@ -10,7 +10,7 @@ export const PostContext = createContext<
 
 // Provider 컴포넌트
 export default function PostProvider({ children }: { children: ReactNode }) {
-    const [totalPostsNumber, setTotalPostsNumber] = useState(11);
+    const [totalPostsNumber, setTotalPostsNumber] = useState(12);
 
     return (
         <PostContext.Provider value={{ totalPostsNumber, setTotalPostsNumber }}>
@@ -18,4 +18,3 @@ export default function PostProvider({ children }: { children: ReactNode }) {
         </PostContext.Provider>
     );
 }
-
