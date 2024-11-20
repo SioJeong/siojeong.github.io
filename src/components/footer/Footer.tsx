@@ -15,11 +15,7 @@ export default function Footer() {
                             <img src="/nav-icons/linkedin.svg" alt="linkedin" />
                         </a>
                     </li>
-                    <li>
-                        <a href="https://blog.naver.com/jeongsangyoung" target="_blank">
-                            <img src="/nav-icons/blog.svg" alt="naver blog" />
-                        </a>
-                    </li>
+                    
                 </ul>
             </nav>
         </footer>
