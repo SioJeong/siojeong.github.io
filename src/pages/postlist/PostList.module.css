@@ -13,9 +13,20 @@
 }
 
 .postTitle {
-    color: #ffffff;
+    color: #111827;
 }
 
 .postDate {
-    font-size: small;
+    font-size: normal;
+}
+
+@media (max-width: 600px) {
+    .postItem {
+        gap: 2rem;
+    }
+
+    .postDate {
+        min-width: 5rem;
+        text-align: right;
+    }
 }

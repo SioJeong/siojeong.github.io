@@ -1,19 +1,14 @@
-import styles from './About.module.css';
-
 export default function About() {
     return (
         <article>
-            <img src="/Symbol.svg" alt="Symbol" className={styles.symbol} />
             <p>
                 저는 소프트웨어 엔지니어를 목표로 하고 있으며, 코드의 핵심 가치를{' '}
                 <strong>사용성</strong>에 두고 항상 이를 고민합니다.
             </p>
             <p>
                 패션을 전공한 후, 2년간 패션 MD로 일했습니다. 그러나{' '}
-                <a href="https://siojeong.github.io/post/7" className={styles.linkedpost}>
-                    <strong>더 나은 것을 만드는 것</strong>에 매력을 느껴, 개발자로서 새로운
-                    커리어를 시작했습니다. <img src="/nav-icons/link.svg" alt="linkedpost" />
-                </a>
+                <strong>더 나은 것을 만드는 것</strong>에 매력을 느껴, 개발자로서 새로운 커리어를
+                시작했습니다.
             </p>
             <p>
                 <strong>고민하는 것</strong>을 좋아합니다. 이러한 생각들을 기록하고 나누기 위해
