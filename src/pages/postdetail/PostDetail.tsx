@@ -11,7 +11,7 @@ const MarkdownRenderer = lazy(() => import('../../components/markdown-renderer/M
 interface FrontMatter {
     title: string;
     date: string;
-    tag: string | string[];
+    tag: string[];
 }
 
 export default function PostDetail() {
@@ -45,16 +45,17 @@ export default function PostDetail() {
     return (
         <main>
             <header>
-                <h1>{frontmatter.title}</h1>
                 <div className={styles.postInfo}>
-                    <p>
-                        Tags:{' '}
-                        {Array.isArray(frontmatter.tag)
-                            ? frontmatter.tag.join(', ')
-                            : frontmatter.tag}
-                    </p>
-                    <PostDate date={frontmatter.date} />
+                    <div className={styles.tagsContainer}>
+                        {frontmatter.tag.map((tag, index) => (
+                            <p key={index} className={styles.tagItem}>
+                                {tag}
+                            </p>
+                        ))}
+                    </div>
+                    <PostDate date={frontmatter.date} className={styles.postDate} />
                 </div>
+                <h1>{frontmatter.title}</h1>
             </header>
             <article>
                 <MarkdownRenderer markdown={markdown} />

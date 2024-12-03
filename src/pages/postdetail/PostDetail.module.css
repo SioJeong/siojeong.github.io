@@ -1,8 +1,26 @@
 .postInfo {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 2rem;
+}
+
+.postDate {
+    color: #6f6f6f;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tagItem {
+    padding: 4px;
+    border: 1px solid #111827;
+    border-radius: 8px;
+    background-color: transparent;
 }
 
 footer a {
