@@ -34,16 +34,8 @@ export default function Home() {
 
     return (
         <main>
-            <section className={styles.audioContainer}>
-                <a
-                    href="https://music.apple.com/kr/playlist/24%EB%85%84-9%EC%9B%94/pl.u-AkAmPNyt27LV71x"
-                    target="_blank"
-                >
-                    <img src="/audio.jpg" className={styles.audio} alt="audio" />
-                </a>
-            </section>
-            <h1 className={styles.recentPostsTitle}>Recently Posted</h1>
             <section>
+                <h1 className={styles.recentPostsTitle}>Recently Posted</h1>
                 <nav>
                     <ul className={styles.recentPostsList}>
                         {recentPostsTitles.map(({ title }, index) => (
