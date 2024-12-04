@@ -1,28 +1,14 @@
-.symbol {
-    width: 100px;
-    height: 100px;
-    animation: rotate 10s linear infinite;
-    margin: 2rem;
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.linkedpost {
-    font-weight: normal;
-
-    img {
-        width: 16px;
-        vertical-align: middle;
-    }
-}
-
-strong {
+h2 {
     font-weight: 400;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.aboutContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
 }
