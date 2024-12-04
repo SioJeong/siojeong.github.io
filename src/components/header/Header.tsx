@@ -14,14 +14,14 @@ export default function Header() {
                             Home
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink
                             to="/post"
                             className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
                         >
                             Post
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink
                             to="/about"

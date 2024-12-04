@@ -18,7 +18,6 @@
     font-weight: normal;
 }
 
-.activeLink {
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
+.navList li a.activeLink {
+    font-weight: 800;
 }

@@ -46,7 +46,7 @@ export default function PostList() {
                             >
                                 {title}
                             </Link>
-                            <PostDate date={date} className={styles.postDate} />
+                            {/* <PostDate date={date} className={styles.postDate} /> */}
                         </article>
                     </li>
                 ))}

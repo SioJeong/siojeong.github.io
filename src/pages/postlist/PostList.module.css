@@ -18,6 +18,7 @@
 
 .postDate {
     font-size: normal;
+    color: #6f6f6f;
 }
 
 @media (max-width: 600px) {
