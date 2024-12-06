@@ -12,12 +12,20 @@ export default function Footer() {
             <nav className={styles.container}>
                 <ul className={styles.socialLinks}>
                     <li>
-                        <a href="https://github.com/SioJeong" target="_blank">
+                        <a
+                            href="https://github.com/SioJeong"
+                            target="_blank"
+                            aria-label="route to github"
+                        >
                             <img src="/nav-icons/github.svg" alt="github" />
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/in/siojeong" target="_blank">
+                        <a
+                            href="https://www.linkedin.com/in/siojeong"
+                            target="_blank"
+                            aria-label="route to linkedin"
+                        >
                             <img src="/nav-icons/linkedin.svg" alt="linkedin" />
                         </a>
                     </li>
