@@ -1,7 +1,7 @@
 import { Buffer } from 'buffer';
-import { StrictMode } from 'react';
+import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import PostProvider from './context/PostProvider';
 
 import Header from './components/header/Header';
@@ -10,28 +10,45 @@ import Footer from './components/footer/Footer';
 
 import './App.css';
 import './shared/fonts/Font.css';
+import { initGA4, trackPageView } from './utils/googleAnalytics';
 
-declare global {
-    interface Window {
-        Buffer: typeof Buffer;
-    }
-}
-
-// 글로벌 환경 설정
 window.Buffer = Buffer;
+
+const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
+    const location = useLocation();
+
+    // Google Analytics 초기화
+    useEffect(() => {
+        const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID; // 환경변수에서 ID 가져오기
+        if (measurementId) {
+            initGA4(measurementId);
+        } else {
+            console.error('Google Analytics Measurement ID is missing!');
+        }
+    }, []);
+
+    // 라우팅 변경 시 페이지뷰 트래킹
+    useEffect(() => {
+        trackPageView(location.pathname);
+    }, [location]);
+
+    return <>{children}</>;
+};
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <PostProvider>
             {/* <BrowserRouter>  */}
             <BrowserRouter basename="/">
-                <div className="root-container">
-                    <div className="content">
-                        <Header />
-                        <Main />
-                        <Footer />
+                <AnalyticsWrapper>
+                    <div className="root-container">
+                        <div className="content">
+                            <Header />
+                            <Main />
+                            <Footer />
+                        </div>
                     </div>
-                </div>
+                </AnalyticsWrapper>
             </BrowserRouter>
         </PostProvider>
     </StrictMode>

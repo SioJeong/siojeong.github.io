@@ -22,3 +22,6 @@ vendor/
 *.sublime-workspace
 .idea/
 .vscode/
+
+# 환경 변수 파일
+.env*
