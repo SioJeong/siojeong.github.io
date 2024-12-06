@@ -1,18 +1,11 @@
 import matter from 'gray-matter';
 import { lazy, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import MarkdownRenderer from '../../components/markdown-renderer/MarkdownRenderer';
 import PostDate from '../../components/post-date/PostDate';
 import styles from './PostDetail.module.css';
+import PageMetadata from '../../components/common/PageMetadata';
 
 const MarkdownRenderer = lazy(() => import('../../components/markdown-renderer/MarkdownRenderer'));
-
-// 인터페이스 정의
-interface FrontMatter {
-    title: string;
-    date: string;
-    tag: string[];
-}
 
 export default function PostDetail() {
     const { postId } = useParams<{ postId: string }>(); // useParams의 타입 지정
@@ -43,28 +36,31 @@ export default function PostDetail() {
     }
 
     return (
-        <main>
-            <header>
-                <div className={styles.postInfo}>
-                    <div className={styles.tagsContainer}>
-                        {frontmatter.tag.map((tag, index) => (
-                            <p key={index} className={styles.tagItem}>
-                                {tag}
-                            </p>
-                        ))}
+        <>
+            <PageMetadata frontMatter={frontmatter} />
+            <main>
+                <header>
+                    <div className={styles.postInfo}>
+                        <div className={styles.tagsContainer}>
+                            {frontmatter.tag.map((tag, index) => (
+                                <p key={index} className={styles.tagItem}>
+                                    {tag}
+                                </p>
+                            ))}
+                        </div>
+                        <PostDate date={frontmatter.date} className={styles.postDate} />
                     </div>
-                    <PostDate date={frontmatter.date} className={styles.postDate} />
-                </div>
-                <h1>{frontmatter.title}</h1>
-            </header>
-            <article>
-                <MarkdownRenderer markdown={markdown} />
-            </article>
-            <br />
-            <br />
-            <footer>
-                <a href="/post">← 게시글 목록으로</a>
-            </footer>
-        </main>
+                    <h1>{frontmatter.title}</h1>
+                </header>
+                <article>
+                    <MarkdownRenderer markdown={markdown} />
+                </article>
+                <br />
+                <br />
+                <footer>
+                    <a href="/post">← 게시글 목록으로</a>
+                </footer>
+            </main>
+        </>
     );
 }
