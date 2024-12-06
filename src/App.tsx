@@ -19,15 +19,21 @@ const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
 
     // Google Analytics 초기화
     useEffect(() => {
-        const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID; // 환경변수에서 ID 가져오기
+        const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
         if (measurementId) {
-            initGA4(measurementId);
+            initGA4(measurementId)
+                .then(() => {
+                    trackPageView(location.pathname); // 초기 페이지뷰 트래킹
+                })
+                .catch((error) => {
+                    console.error('GA Initialization Error:', error);
+                });
         } else {
             console.error('Google Analytics Measurement ID is missing!');
         }
     }, []);
 
-    // 라우팅 변경 시 페이지뷰 트래킹
+    // 라우트 변경 시 페이지뷰 트래킹
     useEffect(() => {
         trackPageView(location.pathname);
     }, [location]);
