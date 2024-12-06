@@ -1,36 +1,55 @@
 let isInitialized = false;
+let initializationPromise: Promise<void> | null = null;
 
 /**
  * Initialize Google Analytics 4 (GA4).
  * @param measurementId - The GA4 Measurement ID
  */
-export const initGA4 = (measurementId: string): void => {
-    if (isInitialized) return; // Prevent duplicate initialization
-    isInitialized = true;
+export const initGA4 = (measurementId: string): Promise<void> => {
+    if (isInitialized) {
+        console.warn('Google Analytics is already initialized.');
+        return Promise.resolve(); // 이미 초기화된 경우 바로 완료
+    }
 
-    // Dynamically add the GA4 script to the document
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    document.head.appendChild(script);
+    if (initializationPromise) {
+        return initializationPromise; // 초기화 중인 경우 기존 Promise 반환
+    }
 
-    script.onload = () => {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) {
-            window.dataLayer.push(args);
-        }
-        window.gtag = gtag;
+    initializationPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
 
-        gtag('js', new Date());
-        gtag('config', measurementId);
-    };
+        script.onload = () => {
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function gtag(...args: any[]) {
+                window.dataLayer.push(args);
+            };
+
+            window.gtag('js', new Date());
+            window.gtag('config', measurementId);
+
+            isInitialized = true; // 초기화 완료
+            resolve();
+        };
+
+        script.onerror = () => {
+            console.error('Failed to load Google Analytics script.');
+            reject(new Error('Failed to load GA script.'));
+        };
+
+        document.head.appendChild(script);
+    });
+
+    return initializationPromise;
 };
 
-/**
- * Track a page view with Google Analytics.
- * @param path - The path of the current page
- */
-export const trackPageView = (path: string): void => {
+export const trackPageView = async (path: string): Promise<void> => {
+    if (!isInitialized) {
+        console.warn('Google Analytics is not initialized. Waiting...');
+        return; // 초기화 완료 전에는 실행하지 않음
+    }
+
     if (window.gtag) {
         window.gtag('event', 'page_view', {
             page_path: path,
