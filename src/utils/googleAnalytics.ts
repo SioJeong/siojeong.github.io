@@ -27,7 +27,7 @@ export const initGA4 = (measurementId: string): Promise<void> => {
             };
 
             window.gtag('js', new Date());
-            window.gtag('config', measurementId);
+            window.gtag('config', measurementId, { debug_mode: true });
 
             isInitialized = true; // 초기화 완료
             resolve();
@@ -46,7 +46,6 @@ export const initGA4 = (measurementId: string): Promise<void> => {
 
 export const trackPageView = async (path: string): Promise<void> => {
     if (!isInitialized) {
-        console.warn('Google Analytics is not initialized. Waiting...');
         return; // 초기화 완료 전에는 실행하지 않음
     }
 
