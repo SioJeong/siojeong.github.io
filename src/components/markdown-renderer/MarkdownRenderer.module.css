@@ -46,6 +46,6 @@
 .inlineCode {
     background-color: #111827;
     color: #ffffff;
-    padding: 0.1rem;
+    padding: 0 4px;
     border-radius: 3px;
 }
