@@ -44,7 +44,6 @@ const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <PostProvider>
-            {/* <BrowserRouter>  */}
             <BrowserRouter basename="/">
                 <AnalyticsWrapper>
                     <div className="root-container">
