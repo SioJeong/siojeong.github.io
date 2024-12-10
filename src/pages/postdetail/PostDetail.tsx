@@ -1,11 +1,10 @@
 import matter from 'gray-matter';
-import { lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PostDate from '../../components/post-date/PostDate';
 import styles from './PostDetail.module.css';
 import PageMetadata from '../../components/common/PageMetadata';
-
-const MarkdownRenderer = lazy(() => import('../../components/markdown-renderer/MarkdownRenderer'));
+import MarkdownRenderer from '../../components/markdown-renderer/MarkdownRenderer';
 
 export default function PostDetail() {
     const { postId } = useParams<{ postId: string }>(); // useParams의 타입 지정
@@ -32,7 +31,7 @@ export default function PostDetail() {
     }, [postId]);
 
     if (!frontmatter) {
-        return <div>Loading...</div>;
+        return null;
     }
 
     return (
