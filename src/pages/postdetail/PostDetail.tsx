@@ -49,7 +49,7 @@ export default function PostDetail() {
                         </div>
                         <PostDate date={frontmatter.date} className={styles.postDate} />
                     </div>
-                    <h1>{frontmatter.title}</h1>
+                    <h1 className={styles.postHeader}>{frontmatter.title}</h1>
                 </header>
                 <article>
                     <MarkdownRenderer markdown={markdown} />
