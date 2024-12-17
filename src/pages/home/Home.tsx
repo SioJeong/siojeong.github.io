@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import fetchRecentPostsTitles from '../../utils/FetchRecentPostsInfos.ts';
 import styles from './Home.module.css';
+import fetchPostInfos from '../../utils/fetchPostInfos.ts';
 import { usePostContext } from '../../context/usePostContext.ts';
 
 const RECENT_POSTS_STANDARD = 5;
@@ -22,7 +22,7 @@ export default function Home() {
                     (_, i) => `/markdowns/posts/${totalPostsNumber - i}.md`
                 );
 
-                const titles = await fetchRecentPostsTitles(markdownPaths);
+                const titles = await fetchPostInfos(markdownPaths);
                 setRecentPostsTitles(titles.slice(0, RECENT_POSTS_STANDARD));
             } catch (error) {
                 console.error(error);

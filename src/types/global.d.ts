@@ -6,6 +6,7 @@ declare global {
     }
 
     interface FrontMatter {
+        id: number;
         title: string;
         date: string;
         tag: string[];

@@ -1,12 +1,13 @@
 import matter from 'gray-matter';
 
 interface PostInfo {
+    id: number;
     title: string;
     date: string;
     tag: string[];
 }
 
-export default async function fetchRecentPostsInfos(paths: string[]): Promise<PostInfo[]> {
+export default async function fetchPostInfos(paths: string[]): Promise<PostInfo[]> {
     try {
         // 모든 경로에 대해 fetch 요청을 병렬 처리
         const fetchPromises = paths.map(async (path) => {
@@ -16,9 +17,9 @@ export default async function fetchRecentPostsInfos(paths: string[]): Promise<Po
 
                 const markdown = await response.text();
                 const { data } = matter(markdown);
-                const { title, date, tag } = data;
+                const { id, title, date, tag } = data;
 
-                return { title, date, tag };
+                return { id, title, date, tag };
             } catch (error) {
                 console.error(`Error fetching or processing file at path: ${path}`, error);
                 return null; // 에러 발생 시 null을 반환
