@@ -55,12 +55,11 @@ export default function PostList() {
     return (
         <main>
             <div className={styles.filter}>
-                <label htmlFor="tag-filter"></label>
                 <select
-                    id="tag-filter"
                     value={selectedTag}
                     onChange={handleTagChange}
                     className={styles.selectBox}
+                    aria-label="tag-filter"
                 >
                     <option value="">None</option>
                     {allTags.map((tag) => (
