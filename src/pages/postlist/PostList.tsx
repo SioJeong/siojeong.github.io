@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import PostDate from '../../components/post-date/PostDate';
 import { usePostContext } from '../../context/usePostContext.ts';
-import fetchRecentPostsTitles from '../../utils/FetchRecentPostsInfos.ts';
+import fetchPostInfos from '../../utils/fetchPostInfos.ts';
 import styles from './PostList.module.css';
 
 interface Post {
+    id: number;
     title: string;
     date: string;
     tag: string[];
@@ -26,7 +27,7 @@ export default function PostList() {
                     (_, i) => `/markdowns/posts/${totalPostsNumber - i}.md`
                 );
 
-                const fetchedPosts = await fetchRecentPostsTitles(markdownPaths);
+                const fetchedPosts = await fetchPostInfos(markdownPaths);
                 setPosts(fetchedPosts);
 
                 // 모든 tag 수집 후 중복 제거
@@ -34,7 +35,7 @@ export default function PostList() {
                 fetchedPosts.forEach((post) => {
                     post.tag.forEach((t) => tags.add(t));
                 });
-                setAllTags([...tags]);
+                setAllTags([...tags].sort());
             } catch (err) {
                 console.error('Failed to fetch posts:', err);
             }
@@ -70,13 +71,10 @@ export default function PostList() {
                 </select>
             </div>
             <ul className={styles.postList}>
-                {filteredPosts.map(({ title, date }, index) => (
+                {filteredPosts.map(({ id, title, date }) => (
                     <li key={`${title}-${date}`}>
                         <article className={styles.postItem}>
-                            <Link
-                                to={`/post/${totalPostsNumber - index}`}
-                                className={styles.postTitle}
-                            >
+                            <Link to={`/post/${id}`} className={styles.postTitle}>
                                 {title}
                             </Link>
                             {/* <PostDate date={date} className={styles.postDate} /> */}
