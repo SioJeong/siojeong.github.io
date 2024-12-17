@@ -8,11 +8,14 @@ import styles from './PostList.module.css';
 interface Post {
     title: string;
     date: string;
+    tag: string[];
 }
 
 export default function PostList() {
     const { totalPostsNumber } = usePostContext();
     const [posts, setPosts] = useState<Post[]>([]);
+    const [allTags, setAllTags] = useState<string[]>([]);
+    const [selectedTag, setSelectedTag] = useState<string>('');
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -23,9 +26,15 @@ export default function PostList() {
                     (_, i) => `/markdowns/posts/${totalPostsNumber - i}.md`
                 );
 
-                // 네트워크 요청 병렬 처리
-                const titles = await fetchRecentPostsTitles(markdownPaths);
-                setPosts(titles);
+                const fetchedPosts = await fetchRecentPostsTitles(markdownPaths);
+                setPosts(fetchedPosts);
+
+                // 모든 tag 수집 후 중복 제거
+                const tags = new Set<string>();
+                fetchedPosts.forEach((post) => {
+                    post.tag.forEach((t) => tags.add(t));
+                });
+                setAllTags([...tags]);
             } catch (err) {
                 console.error('Failed to fetch posts:', err);
             }
@@ -34,10 +43,35 @@ export default function PostList() {
         fetchPosts();
     }, [totalPostsNumber]);
 
+    const handleTagChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedTag(e.target.value);
+    };
+
+    // tag 필터링 로직 적용
+    const filteredPosts = selectedTag
+        ? posts.filter((post) => post.tag.includes(selectedTag))
+        : posts;
+
     return (
         <main>
+            <div className={styles.filter}>
+                <label htmlFor="tag-filter"></label>
+                <select
+                    id="tag-filter"
+                    value={selectedTag}
+                    onChange={handleTagChange}
+                    className={styles.selectBox}
+                >
+                    <option value="">None</option>
+                    {allTags.map((tag) => (
+                        <option key={tag} value={tag}>
+                            {tag}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <ul className={styles.postList}>
-                {posts.map(({ title, date }, index) => (
+                {filteredPosts.map(({ title, date }, index) => (
                     <li key={`${title}-${date}`}>
                         <article className={styles.postItem}>
                             <Link

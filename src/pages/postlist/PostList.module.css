@@ -1,3 +1,11 @@
+.filter {
+    text-align: right;
+
+    .selectBox {
+        padding: 0.2rem;
+    }
+}
+
 .postList {
     font-weight: normal;
     list-style: none;
@@ -22,6 +30,12 @@
 }
 
 @media (max-width: 600px) {
+    .filter {
+        .selectBox {
+            padding: 0.1rem 0;
+        }
+    }
+
     .postItem {
         gap: 2rem;
     }
