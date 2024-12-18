@@ -9,7 +9,7 @@
         "lint": "eslint .",
         "preview": "vite preview"
     },
-    "homepage": "https://siojeong.github.io/",
+    "homepage": "https://jeongsangyoung.dev/",
     "dependencies": {
         "buffer": "^6.0.3",
         "gray-matter": "^4.0.3",
