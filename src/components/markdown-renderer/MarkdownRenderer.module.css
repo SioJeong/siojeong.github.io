@@ -43,3 +43,9 @@
     padding: 0 4px;
     border-radius: 3px;
 }
+
+@media (max-width: 600px) {
+    .codeContainer code {
+        font-size: 10px !important;
+    }
+}

@@ -41,7 +41,11 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
                     code({ className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '');
                         return match ? (
-                            <SyntaxHighlighter style={vscDarkPlus} language={match[1]}>
+                            <SyntaxHighlighter
+                                style={vscDarkPlus}
+                                language={match[1]}
+                                className={styles.codeContainer}
+                            >
                                 {String(children).replace(/\n$/, '')}
                             </SyntaxHighlighter>
                         ) : (
