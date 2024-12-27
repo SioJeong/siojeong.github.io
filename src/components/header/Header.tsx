@@ -11,7 +11,7 @@ export default function Header() {
                             to="/"
                             className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
                         >
-                            Home
+                            home
                         </NavLink>
                     </li>
                     {/* <li>
@@ -27,7 +27,7 @@ export default function Header() {
                             to="/about"
                             className={({ isActive }) => (isActive ? styles.activeLink : undefined)}
                         >
-                            About
+                            about
                         </NavLink>
                     </li>
                 </ul>
