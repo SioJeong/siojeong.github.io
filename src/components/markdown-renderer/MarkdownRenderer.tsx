@@ -10,6 +10,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import styles from './MarkdownRenderer.module.css';
 import { memo } from 'react';
+import CustomImage from '../custom-image/CustomImage';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 SyntaxHighlighter.registerLanguage('typescript', ts);
@@ -31,9 +32,7 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
                     h2: (props) => <h2 className={styles.heading2} {...props} />,
                     h3: (props) => <h3 className={styles.heading3} {...props} />,
                     strong: (props) => <strong className={styles.strong} {...props} />,
-                    img: (props) => (
-                        <img className={styles.image} {...props} alt={props.alt || ''} />
-                    ),
+                    img: ({ src, alt }) => <CustomImage src={src || ''} alt={alt} />,
                     ul: (props) => <ul className={styles.unorderedList} {...props} />,
                     ol: (props) => <ol className={styles.orderedList} {...props} />,
                     li: (props) => <li className={styles.list} {...props} />,
