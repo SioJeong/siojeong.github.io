@@ -7,8 +7,11 @@
         appearance: none;
         background: none;
         text-align: right;
+        text-align-last: right;
+        direction: ltr;
         border: none;
         padding: 0.2rem;
+        color: #111827;
     }
 
     .selectBox:focus {
