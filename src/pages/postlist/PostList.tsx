@@ -14,7 +14,15 @@ interface Post {
 
 export default function PostList() {
     const { totalPostsNumber } = usePostContext();
-    const [posts, setPosts] = useState<Post[]>([]);
+
+    const skeletonPosts = Array.from({ length: totalPostsNumber }, (_, idx) => ({
+        id: -1 * (idx + 1),
+        title: '',
+        date: '',
+        tag: [],
+    }));
+
+    const [posts, setPosts] = useState<Post[]>(skeletonPosts);
     const [allTags, setAllTags] = useState<string[]>([]);
     const [selectedTag, setSelectedTag] = useState<string>('');
 
@@ -62,7 +70,7 @@ export default function PostList() {
                     className={styles.selectBox}
                     aria-label="tag-filter"
                 >
-                    <option value="">None</option>
+                    <option value="">filter ↓</option>
                     {allTags.map((tag) => (
                         <option key={tag} value={tag}>
                             {tag}
@@ -71,16 +79,30 @@ export default function PostList() {
                 </select>
             </div>
             <ul className={styles.postList}>
-                {filteredPosts.map(({ id, title, date }) => (
-                    <li key={`${title}-${date}`}>
-                        <article className={styles.postItem}>
-                            <Link to={`/post/${id}`} className={styles.postTitle}>
-                                {title}
-                            </Link>
-                            {/* <PostDate date={date} className={styles.postDate} /> */}
-                        </article>
-                    </li>
-                ))}
+                {filteredPosts.map(({ id, title, date }) => {
+                    const isSkeleton = id < 0;
+
+                    // 스켈레톤
+                    if (isSkeleton) {
+                        return (
+                            <li key={id} className={styles.skeletonPostItem}>
+                                <div className={styles.skeletonTitle} />
+                            </li>
+                        );
+                    }
+
+                    // 실제 데이터
+                    return (
+                        <li key={`${title}-${date}`}>
+                            <article className={styles.postItem}>
+                                <Link to={`/post/${id}`} className={styles.postTitle}>
+                                    {title}
+                                </Link>
+                                {/* <PostDate date={date} className={styles.postDate} /> */}
+                            </article>
+                        </li>
+                    );
+                })}
             </ul>
         </main>
     );
