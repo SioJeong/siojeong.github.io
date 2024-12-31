@@ -116,4 +116,9 @@
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
+    <url>
+        <loc>https://jeongsangyoung.dev/?/post/21</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
 </urlset>
