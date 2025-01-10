@@ -9,7 +9,7 @@ interface CustomImageProps {
 }
 
 const CustomImage: React.FC<CustomImageProps> = ({ src, alt, width, height }) => {
-    const [aspectRatio, setAspectRatio] = useState<number>(16 / 9); // 기본 비율 설정
+    const [aspectRatio, setAspectRatio] = useState<number>(9 / 16); // 기본 비율 설정
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     useEffect(() => {
